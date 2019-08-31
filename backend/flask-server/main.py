@@ -24,3 +24,8 @@ def kandidaten():
 def kategorien():
     with open('data/kategorien.json', 'r') as json_file:
         return json_file.read()
+
+@app.route('/antworten')
+def antworten():
+    with open('data/antworten.json','r') as json_file:
+	    return json_file.read()

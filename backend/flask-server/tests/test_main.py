@@ -43,3 +43,8 @@ def test_kategorien():
     }]
 
     assert json.loads(kategorien()) == expected_result
+
+def test_antworten():
+	expected_result = ["test"]
+	
+	assert json.loads(antworten()) == expected_result
