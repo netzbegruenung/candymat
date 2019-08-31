@@ -6,7 +6,7 @@ The backend providing the data and managing changing the data.
 ### Install
 Run inside this folder
 ```
-./dev-setup.shs:
+./dev-setup.sh
 ```
 
 For conda users:
