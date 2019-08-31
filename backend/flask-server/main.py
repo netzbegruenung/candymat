@@ -1,8 +1,7 @@
-from flask import Flask, escape, request
-import json
-import os
+from flask import Flask
 
 app = Flask(__name__)
+
 
 @app.route('/')
 def root():
@@ -18,4 +17,10 @@ def fragen():
 @app.route('/kandidaten')
 def kandidaten():
     with open('data/kandidaten.json', 'r') as json_file:
+        return json_file.read()
+
+
+@app.route('/kategorien')
+def kategorien():
+    with open('data/kategorien.json', 'r') as json_file:
         return json_file.read()
