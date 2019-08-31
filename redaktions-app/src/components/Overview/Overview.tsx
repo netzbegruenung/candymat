@@ -1,5 +1,6 @@
 import { WithStyles, createStyles, Paper, Typography, Button, withStyles } from "@material-ui/core";
 import React from "react";
+import { ExistingQuestions } from "components/ExistingQuestions/ExistingQuestions";
 
 
 const styles = createStyles({
@@ -20,10 +21,11 @@ class ProtoOverview extends React.PureComponent<OverviewProps> {
       <Paper className={this.props.classes.mainPaper}>
         <Typography component="h1" variant="h4" align="center">
           Existierende Fragen
-            </Typography>
+        </Typography>
+        <ExistingQuestions />
         <Button variant='contained' color='primary'>
           Neue Frage erstellen
-            </Button>
+        </Button>
       </Paper>
     )
   }

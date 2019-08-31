@@ -13,7 +13,9 @@ const styles = createStyles({
   content: {
     flexGrow: 1,
     height: '100vh',
-    overflow: 'auto',
+    maxWidth: 1000,
+    marginLeft: 'auto',
+    marginRight: 'auto',
   },
 })
 interface AppProps extends WithStyles<typeof styles> { }
