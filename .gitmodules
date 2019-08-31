@@ -1,0 +1,3 @@
+[submodule "candymat-user-app"]
+	path = candymat-user-app
+	url = git@github.com:netzbegruenung/candymat-user-app.git
