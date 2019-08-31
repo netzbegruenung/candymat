@@ -1,4 +1,4 @@
-# Cancymat Backend
+# Candymat Backend
 
 The backend providing the data and managing changing the data.
 
