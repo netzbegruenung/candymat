@@ -1,6 +1,7 @@
 [
   {
     "id": 0,
-    "text": "Dies ist eine Dummy Frage für Testzwecke"
+    "text": "Dies ist eine Dummy Frage für Testzwecke",
+    "kategorie_id": 0
   }
 ]
