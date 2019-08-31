@@ -1,5 +1,6 @@
 import { WithStyles, createStyles, withStyles } from "@material-ui/core";
 import React from "react";
+import { dataApi } from "App";
 
 
 const styles = createStyles({
@@ -14,7 +15,6 @@ const styles = createStyles({
   }
 })
 
-const dataApi = 'http://127.0.0.1:5000'
 
 interface Question {
   id: number,
@@ -38,7 +38,7 @@ class ProtoExistingQuestions extends React.PureComponent<ExistingQuestionsProps,
   }
 
   componentDidMount() {
-    fetch(`${dataApi}/fragen`)
+    fetch(`${dataApi}/fragen/neu`, {method: 'GET'})
       .then(res => res.json())
       .then(json => this.setState({ existingQuestions: json }))
   }
