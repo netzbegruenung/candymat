@@ -1,6 +1,6 @@
 import json
 
-from main import kandidaten, fragen, kategorien
+from main import kandidaten, fragen, kategorien, antworten
 
 
 def test_kandidaten():
@@ -25,8 +25,13 @@ def test_fragen():
     expected_result = [
         {
             "id": 0,
-            "text": "Dies ist eine Dummy Frage für Testzwecke",
-            "kategorie_id": 0
+            "frage_text": "Dies ist eine Dummy Frage für Testzwecke",
+            "kategorie_name": "Umwelt"
+        },
+        {
+            "id": 1,
+            "frage_text": "Eine weitere Testfrage",
+            "kategorie_name": "Umwelt"
         }
     ]
 
@@ -45,6 +50,25 @@ def test_kategorien():
     assert json.loads(kategorien()) == expected_result
 
 def test_antworten():
-	expected_result = ["test"]
+	expected_result = [{
+        {
+            "id": 0,
+            "kandidat_vorname": "Max",
+            "kandidat_name": "Mustermann",
+            "kandidat_email": "max.mustermann@yahoo.com"
+            "frage_text": "Dies ist eine Dummy Frage für Testzwecke",
+            "kategorie_name": "Umwelt",
+            "antwort_text": "Lorem ipsum"
+        },
+        {
+            "id": 1,
+            "kandidat_vorname": "Max",
+            "kandidat_name": "Mustermann",
+            "kandidat_email": "max.mustermann@yahoo.com"
+            "frage_text": "Eine weitere Testfrage"
+            "kategorie_name": "Umwelt",
+            "antwort_text": "Lorem ipsum..."
+        }
+    }]
 	
 	assert json.loads(antworten()) == expected_result
