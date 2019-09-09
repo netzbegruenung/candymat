@@ -1,0 +1,17 @@
+[
+  {
+    "id": 0,
+    "text": "Dies ist eine Dummy Frage für Testzwecke",
+    "kategorie_id": 0
+  },
+  {
+    "id": 1,
+    "text": "Eine weitere Testfrage",
+    "kategorie_id": 0
+  },
+  {
+    "id": 2,
+    "text": "Die besondere Frage.",
+    "kategorie_id": 1
+  }
+]
