@@ -6,7 +6,7 @@ import { CustomAppBar } from 'components/CustomAppBar/CustomAppBar';
 import { Overview } from 'components/Overview/Overview';
 
 
-export const dataApi = 'http://127.0.0.1:5000'
+export const dataApi = '/api'
 
 
 const styles = createStyles({

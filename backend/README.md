@@ -18,7 +18,7 @@ Start the flask server locally under http://127.0.0.1:5000 with the follwing scr
 ```
 ./dev-start.sh
 ```
-Observe dummy data for http://127.0.0.1:5000/kandidaten
+Observe dummy data for http://127.0.0.1:5000/api/kandidaten
 
 #### For Windows  
 ```set set FLASK_APP=flask-server/main.py```  

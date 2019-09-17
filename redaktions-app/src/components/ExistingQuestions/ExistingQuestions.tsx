@@ -38,7 +38,7 @@ class ProtoExistingQuestions extends React.PureComponent<ExistingQuestionsProps,
   }
 
   componentDidMount() {
-    fetch(`${dataApi}/fragen/neu`, {method: 'GET'})
+    fetch(`${dataApi}/fragen`, {method: 'GET'})
       .then(res => res.json())
       .then(json => this.setState({ existingQuestions: json }))
   }

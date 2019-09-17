@@ -10,6 +10,9 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 The page will reload if you make edits.<br>
 You will also see any lint errors in the console.
 
+Running the app without the backend server makes little sense.
+Start it under [http://localhost:5000](http://localhost:5000) as specified in the Readme of the backend server (../backend)
+
 ### `npm test`
 
 Launches the test runner in the interactive watch mode.<br>
