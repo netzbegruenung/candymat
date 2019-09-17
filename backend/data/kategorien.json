@@ -1,7 +1,10 @@
-[{
-  "id": 0,
-  "name": "Umwelt"
-}, {
-  "id": 1,
-  "name": "Soziales"
-}]
+[
+  {
+    "id": 0,
+    "name": "Umwelt"
+  },
+  {
+    "id": 1,
+    "name": "Soziales"
+  }
+]

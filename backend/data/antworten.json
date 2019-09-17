@@ -1,4 +1,4 @@
-{
+[
 	{
 		"id": 0,
 		"kandidaten_id": 0,
@@ -13,4 +13,4 @@
 		"kategorien_id": 0,
 		"text": "Lorem ipsum..."
 	}
-}
+]

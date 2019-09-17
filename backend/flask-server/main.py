@@ -16,12 +16,12 @@ def get_kat_n(k_id):
 
 app = Flask(__name__)
 
-@app.route('/')
+@app.route('/api/')
 def root():
     return "Candymat Data Backend"
 
 
-@app.route('/fragen/')
+@app.route('/api/fragen')
 def fragen():
     with open('data/fragen.json', 'r', encoding="utf-8") as json_file:
         fragen = json.load(json_file)
@@ -47,18 +47,18 @@ def fragen():
         return json.dumps(answer)
 
 
-@app.route('/kandidaten')
+@app.route('/api/kandidaten')
 def kandidaten():
     with open('data/kandidaten.json', 'r') as json_file:
         return json_file.read()
 
 
-@app.route('/kategorien')
+@app.route('/api/kategorien')
 def kategorien():
     with open('data/kategorien.json', 'r') as json_file:
         return json_file.read()
 
-@app.route('/antworten')
+@app.route('/api/antworten')
 def antworten():
     with open('data/antworten.json','r') as json_file:
 	    return json_file.read()
