@@ -1,0 +1,16 @@
+[
+	{
+		"id": 0,
+		"kandidaten_id": 0,
+		"fragen_id": 0,
+		"kategorien_id": 0,
+		"text": "Lorem ipsum"
+	},
+	{
+		"id": 1,
+		"kandidaten_id": 0,
+		"fragen_id": 1,
+		"kategorien_id": 0,
+		"text": "Lorem ipsum..."
+	}
+]
