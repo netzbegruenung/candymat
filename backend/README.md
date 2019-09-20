@@ -175,3 +175,71 @@ Content-Type: application/json
   "email": "kind.mustermann@gmx.com"
 }
 ```
+
+## Kategorien
+### Get all categories
+
+#### Request
+```
+GET /kategorien
+```
+
+#### Example Response
+```
+200 OK
+Content-Type: application/json
+```
+```json
+[
+  {
+    "id": 0,
+    "name": "Umwelt"
+  },
+  {
+    "id": 1,
+    "name": "Soziales"
+  }
+]
+```
+
+### Get the category with id `<id>` (not implemented yet)
+#### Request
+```
+GET /kategorien/<id>
+```
+
+#### Example Response
+```
+200 OK
+Content-Type: application/json
+```
+```json
+{
+  "id": 0,
+  "name": "Umwelt",
+}
+```
+
+### Create a new category (not implemented yet)
+#### Request
+```
+POST /kategorien
+Content-Type: application/json
+```
+```json
+{
+  "name": "Digitales",
+}
+```
+
+#### Example Response
+```
+201 OK
+Content-Type: application/json
+```
+```json
+{
+  "id": 2,
+  "name": "Digitales",
+}
+```
