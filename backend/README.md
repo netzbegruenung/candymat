@@ -243,3 +243,126 @@ Content-Type: application/json
   "name": "Digitales",
 }
 ```
+
+## Fragen
+### Get all questions
+
+#### Request
+```
+GET /fragen
+```
+
+#### Example Response
+```
+200 OK
+Content-Type: application/json
+```
+```json
+[
+  {
+    "id": 0,
+    "text": "Dies ist eine Dummy Frage für Testzwecke",
+    "kategorie": "Umwelt"
+  },
+  {
+    "id": 1,
+    "text": "Eine weitere Testfrage",
+    "kategorie": "Soziales"
+  }
+]
+```
+
+### Get the question with id `<id>` (not implemented yet)
+#### Request
+```
+GET /fragen/<id>
+```
+
+#### Example Response
+```
+200 OK
+Content-Type: application/json
+```
+```json
+{
+    "id": 1,
+    "text": "Eine weitere Testfrage",
+    "kategorie": "Soziales"
+}
+```
+
+### Get questions filtered by category (not implemented yet)
+#### Request
+```
+GET /fragen?kategorie=Umwelt
+```
+
+#### Example Response
+```
+200 OK
+Content-Type: application/json
+```
+```json
+[
+  {
+    "id": 0,
+    "text": "Dies ist eine Dummy Frage für Testzwecke",
+    "kategorie": "Umwelt"
+  }
+]
+```
+
+### Create a new question (not implemented yet)
+#### Request
+```
+POST /fragen
+Content-Type: application/json
+```
+```json
+{
+  "text": "Dies ist noch eine Dummy Frage für Testzwecke",
+  "kategorie": "Umwelt"
+}
+```
+If the value for the key `"kategorie"` does not exist yet it will be created on-the-fly.
+
+#### Example Response
+```
+201 OK
+Content-Type: application/json
+```
+```json
+{
+  "id": 2,
+  "text": "Dies ist noch eine Dummy Frage für Testzwecke",
+  "kategorie": "Umwelt"
+}
+```
+
+### Alter the question with id `<id>` (not implemented yet)
+#### Request
+```
+PUT /fragen/<id>
+Content-Type: application/json
+```
+```json
+{
+  "text": "Dies ist eine geaenderte Dummy Frage",
+  "kategorie": "Digitales"
+}
+```
+
+#### Example Response
+```
+200 OK
+Content-Type: application/json
+```
+```json
+{
+  "id": 2,
+  "text": "Dies ist eine geaenderte Dummy Frage",
+  "kategorie": "Digitales"
+}
+```
+Like for creating a new question, if the value for the key `"kategorie"` does not exist yet,
+it will be created on the fly.
