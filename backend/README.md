@@ -413,9 +413,9 @@ Content-Type: application/json
 ```
 ```json
 [
-	{
-		"id": 0,
-		"kandidat": {
+  {
+    "id": 0,
+    "kandidat": {
       "id": 0,
       "login": "musterma",
       "vorname": "Max",
@@ -432,17 +432,17 @@ Content-Type: application/json
     },
     "position": -1,
     "statement": "Lorem ipsum"
-	},
-	{
-		"id": 1,
-		"kandidat": {
+  },
+  {
+    "id": 1,
+    "kandidat": {
       "id": 0,
       "login": "musterma",
       "vorname": "Max",
       "name": "Mustermann",
       "email": "max.mustermann@yahoo.com"
     },
-		"frage": {
+    "frage": {
       "id": 1,
       "text": "Eine weitere Testfrage",
       "kategorie": {
@@ -452,7 +452,7 @@ Content-Type: application/json
     },
     "position": 1,
     "statement": "Lorem ipsum"
-	}
+  }
 ]
 ```
 
@@ -476,15 +476,15 @@ Content-Type: application/json
 ```json
 [
   {
-		"id": 1,
-		"kandidat": {
+    "id": 1,
+    "kandidat": {
       "id": 0,
       "login": "musterma",
       "vorname": "Max",
       "name": "Mustermann",
       "email": "max.mustermann@yahoo.com"
     },
-		"frage": {
+    "frage": {
       "id": 1,
       "text": "Eine weitere Testfrage",
       "kategorie": {
@@ -519,8 +519,8 @@ Content-Type: application/json
 ```
 ```json
 [
-	{
-		"id": 0,
+  {
+    "id": 0,
     "frage": {
       "id": 0,
       "text": "Dies ist eine Dummy Frage für Testzwecke",
@@ -531,10 +531,10 @@ Content-Type: application/json
     },
     "position": -1,
     "statement": "Lorem ipsum"
-	},
-	{
-		"id": 1,
-		"frage": {
+  },
+  {
+    "id": 1,
+    "frage": {
       "id": 1,
       "text": "Eine weitere Testfrage",
       "kategorie": {
@@ -544,7 +544,7 @@ Content-Type: application/json
     },
     "position": 1,
     "statement": "Lorem ipsum"
-	}
+  }
 ]
 ```
 
@@ -561,7 +561,7 @@ Content-Type: application/json
 ```
 ```json
 {
-	"id": 0,
+  "id": 0,
   "frage": {
     "id": 0,
     "text": "Dies ist eine Dummy Frage für Testzwecke",
@@ -597,7 +597,7 @@ Content-Type: application/json
 ```
 ```json
 {
-	"id": 3,
+  "id": 3,
   "frage": {
     "id": 2,
     "text": "Dies ist noch eine Dummy Frage für Testzwecke",
@@ -631,7 +631,7 @@ Content-Type: application/json
 ```
 ```json
 {
-	"id": 3,
+  "id": 3,
   "frage": {
     "id": 2,
     "text": "Dies ist noch eine Dummy Frage für Testzwecke",
