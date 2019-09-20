@@ -262,12 +262,18 @@ Content-Type: application/json
   {
     "id": 0,
     "text": "Dies ist eine Dummy Frage für Testzwecke",
-    "kategorie": "Umwelt"
+    "kategorie": {
+      "id": 0,
+      "name": "Umwelt"
+    }
   },
   {
     "id": 1,
     "text": "Eine weitere Testfrage",
-    "kategorie": "Soziales"
+    "kategorie": {
+      "id": 1,
+      "name": "Soziales"
+    }
   }
 ]
 ```
@@ -285,16 +291,19 @@ Content-Type: application/json
 ```
 ```json
 {
-    "id": 1,
-    "text": "Eine weitere Testfrage",
-    "kategorie": "Soziales"
+  "id": 1,
+  "text": "Eine weitere Testfrage",
+  "kategorie": {
+    "id": 0,
+    "name": "Soziales"
+  }
 }
 ```
 
 ### Get questions filtered by category (not implemented yet)
 #### Request
 ```
-GET /fragen?kategorie=Umwelt
+GET /fragen?kategorie=<category_id>
 ```
 
 #### Example Response
@@ -307,7 +316,10 @@ Content-Type: application/json
   {
     "id": 0,
     "text": "Dies ist eine Dummy Frage für Testzwecke",
-    "kategorie": "Umwelt"
+    "kategorie": {
+      "id": 0,
+      "name": "Umwelt"
+    }
   }
 ]
 ```
@@ -321,10 +333,9 @@ Content-Type: application/json
 ```json
 {
   "text": "Dies ist noch eine Dummy Frage für Testzwecke",
-  "kategorie": "Umwelt"
+  "kategorie_id": 0,
 }
 ```
-If the value for the key `"kategorie"` does not exist yet it will be created on-the-fly.
 
 #### Example Response
 ```
@@ -335,7 +346,10 @@ Content-Type: application/json
 {
   "id": 2,
   "text": "Dies ist noch eine Dummy Frage für Testzwecke",
-  "kategorie": "Umwelt"
+  "kategorie": {
+      "id": 0,
+      "name": "Umwelt"
+  }
 }
 ```
 
@@ -348,7 +362,7 @@ Content-Type: application/json
 ```json
 {
   "text": "Dies ist eine geaenderte Dummy Frage",
-  "kategorie": "Digitales"
+  "kategorie_id": 0,
 }
 ```
 
@@ -361,8 +375,261 @@ Content-Type: application/json
 {
   "id": 2,
   "text": "Dies ist eine geaenderte Dummy Frage",
-  "kategorie": "Digitales"
+  "kategorie": {
+      "id": 3,
+      "name": "Digitales"
+  }
 }
 ```
-Like for creating a new question, if the value for the key `"kategorie"` does not exist yet,
-it will be created on the fly.
+
+## Antworten
+This represents the answers of the candidates to the questions.
+Each answer consists of two parts:
+1. The position: `-1`, `0`, `1` (negative, neutral, positive)
+2. The statement: Some (optional) additional context the candidate gave on the question.
+
+### Get all answers from every candidate
+
+#### Request
+```
+GET /antworten
+```
+
+#### Example Response
+```
+200 OK
+Content-Type: application/json
+```
+```json
+[
+	{
+		"id": 0,
+		"kandidat": {
+      "id": 0,
+      "login": "musterma",
+      "vorname": "Max",
+      "name": "Mustermann",
+      "email": "max.mustermann@yahoo.com"
+    },
+    "frage": {
+      "id": 0,
+      "text": "Dies ist eine Dummy Frage für Testzwecke",
+      "kategorie": {
+        "id": 0,
+        "name": "Umwelt"
+      }
+    },
+    "position": -1,
+    "statement": "Lorem ipsum"
+	},
+	{
+		"id": 1,
+		"kandidat": {
+      "id": 0,
+      "login": "musterma",
+      "vorname": "Max",
+      "name": "Mustermann",
+      "email": "max.mustermann@yahoo.com"
+    },
+		"frage": {
+      "id": 1,
+      "text": "Eine weitere Testfrage",
+      "kategorie": {
+        "id": 1,
+        "name": "Soziales"
+      }
+    },
+    "position": 1,
+    "statement": "Lorem ipsum"
+	}
+]
+```
+
+### Get answers filtered by question and/or candidate (not implemented yet)
+To filter for a question with id `<question_id>` append `?frage=<question_id>` to the URI.
+To filter for a candidate with id `<candidate_id>` to key-value pair is `kandidat=<candidate_id>`.
+To use both filters at the same time concatinate them with an `&`.
+The ordering of the filters in unimportant.
+
+
+#### Example Request
+```
+GET /antworten?frage=1&kandidat=0
+```
+
+#### Example Response
+```
+200 OK
+Content-Type: application/json
+```
+```json
+[
+  {
+		"id": 1,
+		"kandidat": {
+      "id": 0,
+      "login": "musterma",
+      "vorname": "Max",
+      "name": "Mustermann",
+      "email": "max.mustermann@yahoo.com"
+    },
+		"frage": {
+      "id": 1,
+      "text": "Eine weitere Testfrage",
+      "kategorie": {
+        "id": 1,
+        "name": "Soziales"
+      }
+    },
+    "position": 1,
+    "statement": "Lorem ipsum"
+  },
+]
+```
+
+### Get answers of candidate with id `<candidate_id>`(not implemented yet)
+To get the answers of a single candidate it is also possible to use the API endpoint `/kandidaten/<candidate_id>/answers`.
+This reflects the philosophy that answers belong first and foremost to the candidate.
+There is a difference in the response though:
+The `"kandidat"` key is missing.
+
+It is possible to get the answer for a specific question with the respective querry parameter,
+e.g. `/kandidaten/<candidate_id>/antworten?frage=0`
+
+#### Example Request
+```
+GET /antworten/<candidate_id>/antworten
+```
+
+#### Example Response
+```
+200 OK
+Content-Type: application/json
+```
+```json
+[
+	{
+		"id": 0,
+    "frage": {
+      "id": 0,
+      "text": "Dies ist eine Dummy Frage für Testzwecke",
+      "kategorie": {
+        "id": 0,
+        "name": "Umwelt"
+      }
+    },
+    "position": -1,
+    "statement": "Lorem ipsum"
+	},
+	{
+		"id": 1,
+		"frage": {
+      "id": 1,
+      "text": "Eine weitere Testfrage",
+      "kategorie": {
+        "id": 1,
+        "name": "Soziales"
+      }
+    },
+    "position": 1,
+    "statement": "Lorem ipsum"
+	}
+]
+```
+
+### Get the answer with id `<answer_id>` of candidate with id `<candidate_id>` (not implemented yet)
+#### Request
+```
+GET /kandiaten/<candidate_id>/antworten/<answer_id>
+```
+
+#### Example Response
+```
+200 OK
+Content-Type: application/json
+```
+```json
+{
+	"id": 0,
+  "frage": {
+    "id": 0,
+    "text": "Dies ist eine Dummy Frage für Testzwecke",
+    "kategorie": {
+      "id": 0,
+      "name": "Umwelt"
+    }
+  },
+  "position": -1,
+  "statement": "Lorem ipsum"
+}
+```
+
+### Create a new answer for candidate with id <candidate_id> (not implemented yet)
+#### Request
+```
+POST /kandidaten/<candidate_id>/antworten
+Content-Type: application/json
+```
+```json
+{
+  "question_id": 2,
+  "position": 1,
+  "statement": "Lorem ipsum ....."
+}
+```
+The key `"statement"` is optional.
+
+#### Example Response
+```
+201 OK
+Content-Type: application/json
+```
+```json
+{
+	"id": 3,
+  "frage": {
+    "id": 2,
+    "text": "Dies ist noch eine Dummy Frage für Testzwecke",
+    "kategorie": {
+      "id": 0,
+      "name": "Umwelt"
+    }
+  },
+  "position": 1,
+  "statement": "Lorem ipsum ....."
+}
+```
+
+### Alter the answer with id <answer_id> of candidate with the id `<candidate_id>` (not implemented yet)
+#### Request
+```
+PUT /kandidaten/<candidate_id>/antworten/<answer_id>
+Content-Type: application/json
+```
+```json
+{
+  "position": 0,
+  "statement": "Hab's mir anders ueberlegt..."
+}
+```
+
+#### Example Response
+```
+200 OK
+Content-Type: application/json
+```
+```json
+{
+	"id": 3,
+  "frage": {
+    "id": 2,
+    "text": "Dies ist noch eine Dummy Frage für Testzwecke",
+    "kategorie": {
+      "id": 0,
+      "name": "Umwelt"
+    }
+  },
+  "position": 0,
+  "statement": "Hab's mir anders ueberlegt..."
+}
+```
