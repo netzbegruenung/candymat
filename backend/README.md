@@ -29,12 +29,23 @@ Observe dummy data for http://127.0.0.1:5000/api/kandidaten
 This is the API documentation for the candymat backend.
 It documents all resources (soon to be) available.
 
+## Overview
+| Description | GET (all) | GET (single) | POST | PUT |
+|---|---|---|---|---|
+| candidates | /api/kandidaten | /api/kandidaten/3 | /api/kandidaten | /api/kandidaten/3 |
+| categories for questions | /api/kategorien | /api/kategorien/2 | /api/kategorien | /api/kategorien/2 |
+| questions | /api/fragen | /api/fragen/1 | /api/fragen | /api/fragen/1 |
+| answers from all candidates | /api/antworten | | | |
+| answers of a single candidate | /api/kandidaten/3/antworten | /api/kandidaten/3/antworten/2 | /api/kandidaten/3/antworten | /api/kandidaten/3/antworten/2 |
+
+For some endpoints such as `/api/kandiaten` or `/answers` there are additional filter options.
+
 ## Kandidaten
 ### Get all candidates
 
 #### Request
 ```
-GET /kandidaten
+GET /api/kandidaten
 ```
 
 #### Example Response
@@ -64,7 +75,7 @@ Content-Type: application/json
 ### Get the candidate with id `<id>` (not implemented yet)
 #### Request
 ```
-GET /kandidaten/<id>
+GET /api/kandidaten/<id>
 ```
 
 #### Example Response
@@ -89,7 +100,7 @@ To concatenate filters, separeate them with `&`, e.g. `name=Mustermann&id=0`
 
 #### Example Request
 ```
-GET /kandidaten?name=Mustermann
+GET /api/kandidaten?name=Mustermann
 ```
 
 #### Example Response
@@ -119,7 +130,7 @@ Content-Type: application/json
 ### Create a new candidate (not implemented yet)
 #### Request
 ```
-POST /kandidaten
+POST /api/kandidaten
 Content-Type: application/json
 ```
 ```json
@@ -151,7 +162,7 @@ Content-Type: application/json
 ### Alter information of the candidate with id `<id>` (not implemented yet)
 #### Request
 ```
-PUT /kandidaten/<id>
+PUT /api/kandidaten/<id>
 Content-Type: application/json
 ```
 ```json
@@ -181,7 +192,7 @@ Content-Type: application/json
 
 #### Request
 ```
-GET /kategorien
+GET /api/kategorien
 ```
 
 #### Example Response
@@ -205,7 +216,7 @@ Content-Type: application/json
 ### Get the category with id `<id>` (not implemented yet)
 #### Request
 ```
-GET /kategorien/<id>
+GET /api/kategorien/<id>
 ```
 
 #### Example Response
@@ -223,7 +234,7 @@ Content-Type: application/json
 ### Create a new category (not implemented yet)
 #### Request
 ```
-POST /kategorien
+POST /api/kategorien
 Content-Type: application/json
 ```
 ```json
@@ -249,7 +260,7 @@ Content-Type: application/json
 
 #### Request
 ```
-GET /fragen
+GET /api/fragen
 ```
 
 #### Example Response
@@ -281,7 +292,7 @@ Content-Type: application/json
 ### Get the question with id `<id>` (not implemented yet)
 #### Request
 ```
-GET /fragen/<id>
+GET /api/fragen/<id>
 ```
 
 #### Example Response
@@ -303,7 +314,7 @@ Content-Type: application/json
 ### Get questions filtered by category (not implemented yet)
 #### Request
 ```
-GET /fragen?kategorie=<category_id>
+GET /api/fragen?kategorie=<category_id>
 ```
 
 #### Example Response
@@ -327,7 +338,7 @@ Content-Type: application/json
 ### Create a new question (not implemented yet)
 #### Request
 ```
-POST /fragen
+POST /api/fragen
 Content-Type: application/json
 ```
 ```json
@@ -356,7 +367,7 @@ Content-Type: application/json
 ### Alter the question with id `<id>` (not implemented yet)
 #### Request
 ```
-PUT /fragen/<id>
+PUT /api/fragen/<id>
 Content-Type: application/json
 ```
 ```json
@@ -392,7 +403,7 @@ Each answer consists of two parts:
 
 #### Request
 ```
-GET /antworten
+GET /api/antworten
 ```
 
 #### Example Response
@@ -454,7 +465,7 @@ The ordering of the filters in unimportant.
 
 #### Example Request
 ```
-GET /antworten?frage=1&kandidat=0
+GET /api/antworten?frage=1&kandidat=0
 ```
 
 #### Example Response
@@ -488,17 +499,17 @@ Content-Type: application/json
 ```
 
 ### Get answers of candidate with id `<candidate_id>`(not implemented yet)
-To get the answers of a single candidate it is also possible to use the API endpoint `/kandidaten/<candidate_id>/answers`.
+To get the answers of a single candidate it is also possible to use the API endpoint `/api/kandidaten/<candidate_id>/answers`.
 This reflects the philosophy that answers belong first and foremost to the candidate.
 There is a difference in the response though:
 The `"kandidat"` key is missing.
 
 It is possible to get the answer for a specific question with the respective querry parameter,
-e.g. `/kandidaten/<candidate_id>/antworten?frage=0`
+e.g. `/api/kandidaten/<candidate_id>/antworten?frage=0`
 
 #### Example Request
 ```
-GET /antworten/<candidate_id>/antworten
+GET /kandidaten/<candidate_id>/antworten
 ```
 
 #### Example Response
@@ -540,7 +551,7 @@ Content-Type: application/json
 ### Get the answer with id `<answer_id>` of candidate with id `<candidate_id>` (not implemented yet)
 #### Request
 ```
-GET /kandiaten/<candidate_id>/antworten/<answer_id>
+GET /api/kandiaten/<candidate_id>/antworten/<answer_id>
 ```
 
 #### Example Response
@@ -567,7 +578,7 @@ Content-Type: application/json
 ### Create a new answer for candidate with id <candidate_id> (not implemented yet)
 #### Request
 ```
-POST /kandidaten/<candidate_id>/antworten
+POST /api/kandidaten/<candidate_id>/antworten
 Content-Type: application/json
 ```
 ```json
@@ -603,7 +614,7 @@ Content-Type: application/json
 ### Alter the answer with id <answer_id> of candidate with the id `<candidate_id>` (not implemented yet)
 #### Request
 ```
-PUT /kandidaten/<candidate_id>/antworten/<answer_id>
+PUT /api/kandidaten/<candidate_id>/antworten/<answer_id>
 Content-Type: application/json
 ```
 ```json
