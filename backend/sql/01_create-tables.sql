@@ -46,7 +46,7 @@ CREATE TABLE public.answer
 (
     question_id integer REFERENCES public."question" (id) ON UPDATE CASCADE ON DELETE CASCADE,
     user_login character varying(8) REFERENCES public."user" ON UPDATE CASCADE ON DELETE CASCADE,
-    postition integer NOT NULL,
+    position integer NOT NULL,
     text character varying(5000),
     primary key (question_id, user_login)
 );
