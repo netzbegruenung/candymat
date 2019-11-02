@@ -1,4 +1,4 @@
-/connect candymat_db
+\connect candymat_db
 
 -- Create schema for candymat_data
 CREATE SCHEMA candymat_data;
@@ -41,7 +41,7 @@ CREATE TABLE candymat_data.category
 CREATE TABLE candymat_data.question
 (
     id serial primary key,
-    category_id integer REFERENCES candymat_data"category" (id) ON UPDATE CASCADE ON DELETE SET NULL,
+    category_id integer REFERENCES candymat_data."category" (id) ON UPDATE CASCADE ON DELETE SET NULL,
     text character varying(3000) NOT NULL,
     description character varying(5000)
 );

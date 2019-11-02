@@ -4,14 +4,18 @@ services:
   postgres:
     image: candymat-postgres:11.5
     build:
-      dockerfile: ./backend/Dockerfile.postgres
+      dockerfile: ./Dockerfile.postgres
       context: ./backend/
     env_file: ./backend/.env-backend
+    volumes:
+      - "db-data:/var/lib/postgresql/data"
     ports:
       - "5432:5432"
     restart: always
-    volumes:
-      - "db-data:/var/lib/postgresql/data"
     networks:
       - backend
-    
+
+networks:
+  backend:
+columes:
+  db-data:
