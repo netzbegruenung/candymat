@@ -10,4 +10,8 @@
   git submodule init
   git submodule update
   ```
-  
+
+### Start backend
+
+* ```docker-compose up -d```
+* Point browser to http://localhost:5000/graphiql for testing queries and documentation of nodes and http://localhost:5000/graphql for graphQL endpoint
