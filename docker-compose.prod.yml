@@ -1,10 +1,18 @@
 version: '3.1'
 
 services:
+  redaktion:
+    container_name: redaktions-app
+    build:
+      context: ./redaktions-app/
+      dockerfile: ./prod.Dockerfile
+    ports:
+      - '80:80'
+
   postgres:
     image: candymat-postgres:11.5
     build:
-      dockerfile: ./Dockerfile.postgres
+      dockerfile: ./Dockerfile
       context: ./backend/
     env_file: ./backend/.env-backend
     volumes:
@@ -23,7 +31,7 @@ services:
     env_file: ./backend/.env-backend
     ports:
       - "5000:5000"
-    command: ["postgraphile", "--connection", $DATABASE_URL, "--host", "0.0.0.0", "--port", "5000", "--schema", "candymat_data", "--watch"]
+    command: ["--connection", $DATABASE_URL, "--host", "0.0.0.0", "--port", "5000", "--schema", "candymat_data", "--watch"]
     networks:
       - frontend
       - backend

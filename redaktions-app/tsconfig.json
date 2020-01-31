@@ -6,7 +6,7 @@
       "es6",
       "dom"
     ],
-    "jsx": "react",
+    "jsx": "preserve",
     "moduleResolution": "node",
     "forceConsistentCasingInFileNames": true,
     "strict": true,
