@@ -1,0 +1,17 @@
+version: '3.1'
+
+services:
+  postgres:
+    image: candymat-postgres:11.5
+    build:
+      dockerfile: ./Dockerfile.postgres
+      context: ./backend/
+    env_file: ./backend/.env-backend
+    ports:
+      - "5432:5432"
+    restart: always
+    networks:
+      - backend
+
+networks:
+  backend:
