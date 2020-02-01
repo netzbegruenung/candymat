@@ -6,13 +6,16 @@ services:
     build:
       context: ./redaktions-app/
       dockerfile: ./dev.Dockerfile
-    volumes:
-      - './redaktions-app:/app'
-      - '/redaktions-app/node_modules'
     ports:
       - '3001:3000'
-    environment:
-      - NODE_ENV=development
+
+  user-app:
+    container_name: user-app
+    build:
+      context: ./candymat-user-app/
+      dockerfile: ./dev.Dockerfile
+    ports:
+      - "8080:8080"
 
   postgres:
     image: candymat-postgres:11.5
