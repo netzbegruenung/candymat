@@ -37,7 +37,15 @@ services:
     env_file: ./backend/.env-backend
     ports:
       - "5000:5000"
-    command: ["--connection", $DATABASE_URL, "--host", "0.0.0.0", "--port", "5000", "--schema", "candymat_data", "--watch"]
+    command: [
+      "--connection", $DATABASE_URL,
+      "--host", "0.0.0.0",
+      "--port", "5000",
+      "--schema", "candymat_data", 
+      # "--jwt-token-identifier", "candymat_data.jwt_token",
+      # "--jwt-secret", "$JWT_SECRET",
+      "--watch"
+      ]
     networks:
       - frontend
       - backend

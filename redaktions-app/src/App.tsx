@@ -6,7 +6,7 @@ import { CustomAppBar } from 'components/CustomAppBar/CustomAppBar';
 import { Overview } from 'components/Overview/Overview';
 
 
-export const dataApi = '/api'
+export const dataApi = 'http://localhost:5000/graphql'
 
 
 const styles = createStyles({

@@ -1,57 +1,51 @@
 \connect candymat_db
 
 -- Create schema for candymat_data
-CREATE SCHEMA candymat_data;
+create SCHEMA candymat_data;
 
--- Create table for users
-CREATE TABLE candymat_data."user"
-(
-    login character varying(8) primary key,
-    name character varying(300),
-    surname character varying(300),
-    email character varying(320)
+create type candymat_role as enum (
+  'editor',
+  'candidate',
+  'person'
 );
 
--- Create table for user groups
-CREATE TABLE candymat_data."group"
-(
-    id serial primary key,
-    name character varying(300) UNIQUE,
-    access_right character varying(1000)
+-- create table for users
+create table candymat_data.person (
+  id               serial primary key,
+  first_name       character varying(200),
+  last_name        character varying(200),
+  about            character varying(2000),
+  created_at       timestamp default now()
 );
 
--- Create table for relation of users and groups
-CREATE TABLE candymat_data.user_group
-(
-    group_id integer REFERENCES candymat_data."group" (id) ON UPDATE CASCADE ON DELETE CASCADE,
-    user_login character varying(8) REFERENCES candymat_data."user" (login) ON UPDATE CASCADE ON DELETE CASCADE,
-    primary key (group_id, user_login)
+-- create table for accounts
+create table candymat_data.person_account (
+  person_id        integer primary key references candymat_data.person(id) on delete cascade,
+  email            character varying(320) not null unique check (email ~* '^.+@.+\..+$'),
+  password_hash    character varying(256) not null,
+  candymat_role    candymat_role not null default 'person'
 );
 
-
--- Create table for categories
-CREATE TABLE candymat_data.category
-(
+-- create table for categories
+create table candymat_data.category (
     id serial primary key,
     title character varying(300) UNIQUE NOT NULL,
     description character varying(5000)
 );
 
--- Create table for questions
-CREATE TABLE candymat_data.question
-(
+-- create table for questions
+create table candymat_data.question (
     id serial primary key,
-    category_id integer REFERENCES candymat_data."category" (id) ON UPDATE CASCADE ON DELETE SET NULL,
+    category_id integer REFERENCES candymat_data.category (id) ON UPDATE CASCADE ON DELETE SET NULL,
     text character varying(3000) NOT NULL,
     description character varying(5000)
 );
 
--- Create table for answers
-CREATE TABLE candymat_data.answer
-(
-    question_id integer REFERENCES candymat_data."question" (id) ON UPDATE CASCADE ON DELETE CASCADE,
-    user_login character varying(8) REFERENCES candymat_data."user" ON UPDATE CASCADE ON DELETE CASCADE,
+-- create table for answers
+create table candymat_data.answer (
+    question_id integer REFERENCES candymat_data.question (id) ON UPDATE CASCADE ON DELETE CASCADE,
+    person_id integer REFERENCES candymat_data.person (id) ON UPDATE CASCADE ON DELETE CASCADE,
     position integer NOT NULL,
     text character varying(5000),
-    primary key (question_id, user_login)
+    primary key (question_id, person_id)
 );
